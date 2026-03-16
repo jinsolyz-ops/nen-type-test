@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Killua Placeholder</title>
+  <desc id="desc">Placeholder portrait for Killua.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#5e3d86"/>
+      <stop offset="100%" stop-color="#0a0a0f"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="1000" fill="url(#bg)"/>
+  <circle cx="400" cy="320" r="170" fill="#d9c2a4" opacity="0.94"/>
+  <rect x="215" y="555" width="370" height="255" rx="42" fill="#35274d" opacity="0.93"/>
+  <text x="400" y="885" fill="#f5e7c8" font-size="66" text-anchor="middle" font-family="Georgia, serif">KILLUA</text>
+</svg>

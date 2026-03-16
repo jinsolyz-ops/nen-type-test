@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Gon Placeholder</title>
+  <desc id="desc">Placeholder portrait for Gon Freecss.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#1d5f2c"/>
+      <stop offset="100%" stop-color="#0a0a0f"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="1000" fill="url(#bg)"/>
+  <circle cx="400" cy="330" r="170" fill="#d8b16f" opacity="0.92"/>
+  <rect x="210" y="560" width="380" height="250" rx="40" fill="#274d27" opacity="0.9"/>
+  <text x="400" y="885" fill="#f5e7c8" font-size="72" text-anchor="middle" font-family="Georgia, serif">GON</text>
+</svg>

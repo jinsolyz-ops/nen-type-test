@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Meruem Placeholder</title>
+  <desc id="desc">Placeholder portrait for Meruem.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#a09d2f"/>
+      <stop offset="100%" stop-color="#0a0a0f"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="1000" fill="url(#bg)"/>
+  <circle cx="400" cy="310" r="182" fill="#b3b57a" opacity="0.9"/>
+  <rect x="182" y="540" width="436" height="284" rx="48" fill="#4a481e" opacity="0.94"/>
+  <text x="400" y="885" fill="#f5e7c8" font-size="66" text-anchor="middle" font-family="Georgia, serif">MERUEM</text>
+</svg>
