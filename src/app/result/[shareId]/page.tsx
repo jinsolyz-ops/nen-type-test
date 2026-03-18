@@ -3,10 +3,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { NenTypeExplorer } from "@/components/NenTypeExplorer";
-import { RadarChart } from "@/components/RadarChart";
-import { ResultBanner } from "@/components/ResultBanner";
 import { ShareButtons } from "@/components/ShareButtons";
-import { findNenType, nenTypeAffinities, nenTypeColors } from "@/lib/nenTypeRuntime";
+import { findNenType } from "@/lib/nenTypeRuntime";
 import { nenTypes } from "@/lib/nenTypes";
 import { getResultByShareId } from "@/lib/supabase";
 import type { NenTypeKey } from "@/types";
@@ -59,20 +57,12 @@ export default async function ResultPage({ params }: ResultPageProps) {
   const result = await loadResult(shareId);
   const typeKey = result.top_type as NenTypeKey;
   const nenType = findNenType(typeKey);
-  const color = nenTypeColors[typeKey];
-  const scores = nenTypeAffinities[typeKey];
   const allTypes = nenTypes.map((type) => findNenType(type.key));
 
   return (
     <main className="page-wrap py-8">
       <div className="flex flex-col gap-5">
-        <ResultBanner nenType={nenType} color={color} />
-        <RadarChart scores={scores} color={color} />
-        <NenTypeExplorer
-          initialType={nenType}
-          allTypes={allTypes}
-          resultTypeKey={typeKey}
-        />
+        <NenTypeExplorer initialType={nenType} allTypes={allTypes} />
         <ShareButtons nenType={nenType} shareId={shareId} />
         <Link
           href="/test"
