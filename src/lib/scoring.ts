@@ -16,7 +16,7 @@ export const addOptionScores = (
   const nextScores = createEmptyScores();
 
   for (const key of NEN_TYPE_KEYS) {
-    nextScores[key] = currentScores[key] + option.weights[key];
+    nextScores[key] = currentScores[key] + (option.scores[key] ?? 0);
   }
 
   return nextScores;

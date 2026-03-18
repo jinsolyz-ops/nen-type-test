@@ -16,7 +16,7 @@ export default function TestPage() {
   const router = useRouter();
   const [current, setCurrent] = useState(0);
   const [scores, setScores] = useState<Scores>(createEmptyScores);
-  const [selectedOptionId, setSelectedOptionId] = useState<string | null>(null);
+  const [selectedChoiceIndex, setSelectedChoiceIndex] = useState<number | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [isFinishing, setIsFinishing] = useState(false);
@@ -28,25 +28,25 @@ export default function TestPage() {
     void trackPageView("/test");
   }, []);
 
-  const handleSelect = async (optionId: string) => {
+  const handleSelect = async (choiceIndex: number) => {
     if (isSubmitting) {
       return;
     }
 
-    const option = question.options.find((item) => item.id === optionId);
+    const choice = question.choices[choiceIndex];
 
-    if (!option) {
+    if (!choice) {
       return;
     }
 
-    setSelectedOptionId(option.id);
+    setSelectedChoiceIndex(choiceIndex);
     setIsSubmitting(true);
     setErrorMessage(null);
     setIsFinishing(current === questions.length - 1);
 
     await new Promise((resolve) => window.setTimeout(resolve, ANSWER_DELAY_MS));
 
-    const nextScores = addOptionScores(scores, option);
+    const nextScores = addOptionScores(scores, choice);
 
     try {
       if (current === questions.length - 1) {
@@ -62,12 +62,12 @@ export default function TestPage() {
 
       setScores(nextScores);
       setCurrent((prev) => prev + 1);
-      setSelectedOptionId(null);
+      setSelectedChoiceIndex(null);
       setIsFinishing(false);
     } catch (error) {
       console.error(error);
       setErrorMessage("결과 저장에 실패했습니다. 잠시 후 다시 시도해주세요.");
-      setSelectedOptionId(null);
+      setSelectedChoiceIndex(null);
       setIsFinishing(false);
     } finally {
       setIsSubmitting(false);
@@ -84,7 +84,8 @@ export default function TestPage() {
         />
         <QuestionCard
           question={question}
-          selectedOptionId={selectedOptionId}
+          questionNumber={current + 1}
+          selectedChoiceIndex={selectedChoiceIndex}
           disabled={isSubmitting}
           onSelect={handleSelect}
         />

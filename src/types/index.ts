@@ -27,16 +27,13 @@ export interface NenType {
 }
 
 export interface QuestionOption {
-  id: string;
   text: string;
-  weights: Scores;
+  scores: Partial<Scores>;
 }
 
 export interface Question {
-  id: number;
-  label: string;
   text: string;
-  options: [
+  choices: [
     QuestionOption,
     QuestionOption,
     QuestionOption,
