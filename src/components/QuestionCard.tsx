@@ -32,7 +32,7 @@ export function QuestionCard({
               type="button"
               onClick={() => onSelect(option.id)}
               disabled={disabled}
-              className={`rounded-[22px] border px-5 py-4 text-left text-sm leading-7 transition sm:text-base ${
+              className={`rounded-[22px] border px-5 py-4 text-left text-xs leading-6 font-normal transition sm:text-sm ${
                 isSelected
                   ? "border-[var(--gold)] bg-[var(--aura)] text-[var(--gold-light)]"
                   : "border-[var(--border)] bg-white/[0.02] hover:border-[var(--gold)]/40 hover:bg-white/[0.04]"
