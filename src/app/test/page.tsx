@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { startTransition, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 import { ProgressBar } from "@/components/ProgressBar";
@@ -18,6 +18,7 @@ export default function TestPage() {
   const [scores, setScores] = useState<Scores>(createEmptyScores);
   const [selectedOptionId, setSelectedOptionId] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const question = questions[current];
   const progressPercent = getProgressPercent(current, questions.length);
@@ -39,22 +40,34 @@ export default function TestPage() {
 
     setSelectedOptionId(option.id);
     setIsSubmitting(true);
+    setErrorMessage(null);
 
     await new Promise((resolve) => window.setTimeout(resolve, ANSWER_DELAY_MS));
 
     const nextScores = addOptionScores(scores, option);
 
-    if (current === questions.length - 1) {
-      const topType = calcTopType(nextScores);
-      const shareId = await saveResult(topType);
-      router.push(`/result/${shareId}`);
-      return;
-    }
+    try {
+      if (current === questions.length - 1) {
+        const topType = calcTopType(nextScores);
+        const shareId = await saveResult(topType);
 
-    setScores(nextScores);
-    setCurrent((prev) => prev + 1);
-    setSelectedOptionId(null);
-    setIsSubmitting(false);
+        startTransition(() => {
+          router.push(`/result/${shareId}`);
+        });
+
+        return;
+      }
+
+      setScores(nextScores);
+      setCurrent((prev) => prev + 1);
+      setSelectedOptionId(null);
+    } catch (error) {
+      console.error(error);
+      setErrorMessage("결과 저장에 실패했습니다. 잠시 후 다시 시도해주세요.");
+      setSelectedOptionId(null);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -71,6 +84,9 @@ export default function TestPage() {
           disabled={isSubmitting}
           onSelect={handleSelect}
         />
+        {errorMessage ? (
+          <p className="text-center text-sm text-[#ff9b8f]">{errorMessage}</p>
+        ) : null}
       </div>
     </main>
   );
