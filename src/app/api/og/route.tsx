@@ -53,7 +53,7 @@ export async function GET(request: Request) {
             width: "420px",
             height: "420px",
             borderRadius: "9999px",
-            background: `${nenType.color}44`,
+            background: `${colorMap[nenType.key] ?? "#c9a84c"}44`,
             filter: "blur(40px)",
           }}
         />
