@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 
-import type { NenType } from "@/types";
+import type { NenType } from "@/lib/nenTypes";
 
 interface NenTypeCardProps {
   nenType: NenType;
@@ -30,9 +30,9 @@ export function NenTypeCard({ nenType }: NenTypeCardProps) {
           {nenType.personality}
         </p>
         <p>
-          <strong className="text-[var(--gold)]">추천 직업</strong>
+          <strong className="text-[var(--gold)]">어울리는 MBTI</strong>
           {"  "}
-          {nenType.jobs.join(" · ")}
+          {nenType.mbti.join(" · ")}
         </p>
       </div>
 

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000">
+  <rect width="800" height="1000" fill="#23533f"/>
+  <circle cx="400" cy="320" r="175" fill="#d2b28d"/>
+  <rect x="195" y="545" width="410" height="275" rx="44" fill="#20382f"/>
+  <text x="400" y="885" fill="#f5e7c8" font-size="72" text-anchor="middle" font-family="Georgia, serif">KITE</text>
+</svg>

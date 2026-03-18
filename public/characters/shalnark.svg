@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000">
+  <rect width="800" height="1000" fill="#8e6823"/>
+  <circle cx="400" cy="320" r="170" fill="#d6b48b"/>
+  <rect x="210" y="550" width="380" height="260" rx="42" fill="#46341b"/>
+  <text x="400" y="885" fill="#f5e7c8" font-size="62" text-anchor="middle" font-family="Georgia, serif">SHALNARK</text>
+</svg>

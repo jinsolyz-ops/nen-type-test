@@ -2,8 +2,8 @@
 
 import { useEffect } from "react";
 
+import type { NenType } from "@/lib/nenTypes";
 import { trackPageView } from "@/lib/supabase";
-import type { NenType } from "@/types";
 
 interface ShareButtonsProps {
   nenType: NenType;

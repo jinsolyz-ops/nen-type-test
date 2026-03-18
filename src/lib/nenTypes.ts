@@ -1,190 +1,152 @@
-import { NEN_TYPE_KEYS, type NenType, type NenTypeKey } from "@/types";
+export type Character = {
+  name: string;
+  ability: string;
+  imageUrl: string;
+};
 
-const characterImage = (slug: string): string => `/characters/${slug}.svg`;
+export type NenType = {
+  key: "K" | "H" | "T" | "G" | "S" | "J";
+  name: string;
+  en: string;
+  tagline: string;
+  desc: string;
+  ability: string;
+  personality: string;
+  mbti: string[];
+  characters: Character[];
+};
 
-export const nenTypes: Record<NenTypeKey, NenType> = {
-  K: {
+export const nenTypes: NenType[] = [
+  {
     key: "K",
     name: "강화계",
     en: "ENHANCEMENT",
-    color: "#dc5040",
-    desc: "정면 돌파에 강하고, 몸과 마음을 단단하게 밀어붙이는 전투형 계통이다.",
-    ability: "신체 능력 강화, 단순하지만 압도적인 파괴력, 정면 승부에 최적화된 오라 운용.",
-    personality: "솔직하고 우직하다. 판단이 빠르고 목표가 보이면 망설이지 않고 부딪히는 편이다.",
-    jobs: ["운동선수", "소방관", "현장 리더"],
+    tagline: "육체와 사물의 능력을 극한까지 끌어올리는 계통입니다.",
+    desc: '넨의 기본 중의 기본입니다. 복잡한 것 없어요. 그냥 강하면 됩니다. 근데 이게 말이 쉽지, "그냥 강해진다"는 게 육체적으로도 정신적으로도 한계를 계속 넘어야 한다는 뜻이에요. 6계통 중 전투에서 제일 직관적이고 제일 무서운 이유가 여기 있죠. 곤이 왜 최강 잠재력인지 생각해보세요. 강화계는 단순해 보여도 끝까지 밀어붙이는 사람이 가장 무섭습니다.',
+    ability: "신체 능력 극대화, 회복력 강화, 물체 성능 증폭",
+    personality: '포기를 모릅니다. 목표가 생기면 그냥 직진이에요. 감정에 솔직하고 단순해 보이지만 그 순수함이 진짜 무기죠. 주변에 한 명쯤 있는 "저 사람 왜 저렇게 열심히 사나" 싶은 유형이에요. 근데 같이 있으면 나도 뭔가 하고 싶어지는 이상한 에너지가 있습니다.',
+    mbti: ["ESTP", "ESFP", "ESTJ"],
     characters: [
       {
         name: "곤 프릭스",
-        imageUrl: characterImage("gon"),
-        ability: "강화한 주먹에 오라를 집중해 폭발적인 일격을 만든다.",
+        ability: "짜잔권 — 넨을 한 점에 집중시켜 폭발적인 위력으로 타격하는 강화계 필살기.",
+        imageUrl: "/characters/gon.png",
       },
       {
-        name: "우봉",
-        imageUrl: characterImage("uvogin"),
-        ability: "압도적인 육체와 강화된 타격으로 전장을 정리한다.",
+        name: "우보 긴",
+        ability: "빅뱅 임팩트 — 강화한 주먹 한 방에 압도적인 파괴력을 실어 전장을 뒤집는 순수 강화계 기술.",
+        imageUrl: "/characters/uvogin.png",
       },
     ],
-    affinity: {
-      K: 100,
-      H: 80,
-      T: 80,
-      G: 60,
-      S: 60,
-      J: 40,
-    },
   },
-  H: {
+  {
     key: "H",
     name: "방출계",
     en: "EMISSION",
-    color: "#50a0dc",
-    desc: "오라를 몸 밖으로 멀리 뻗어 내보내며, 거리와 순간 폭발력을 장악하는 계통이다.",
-    ability: "원거리 방출, 탄환형 공격, 넓은 범위를 빠르게 압박하는 오라 발사.",
-    personality: "직설적이고 행동이 빠르다. 즉흥 대응에 강하며 판을 크게 보는 경향이 있다.",
-    jobs: ["응급 구조사", "영업 리더", "파일럿"],
+    tagline: "넨을 신체에서 분리해 원거리로 날려보내는 계통입니다.",
+    desc: "넨을 몸에서 분리해서 날리는 계통이에요. 원거리 공격이 가능해서 실전에서 엄청 유용합니다. 단순히 멀리 쏘는 것 같지만, 몸에서 떨어진 넨을 유지하고 제어하는 것 자체가 난이도 높은 기술이에요. 거리와 위력이 동시에 중요해서 실전 감각이 특히 잘 드러나는 계통이죠.",
+    ability: "오라 원거리 방출, 타격 전달, 넨 덩어리 투사",
+    personality: '감정이 풍부하고 의리 하나는 진짜입니다. 겉으로는 허세를 부리거나 시끄러울 수 있는데 속은 누구보다 따뜻한 유형이에요. 소중한 사람을 건드리면 각오해야 합니다. 평소엔 제일 인간적인데 한번 폭발하면 제일 무서운 타입이죠.',
+    mbti: ["ENFJ", "ESFJ", "ISFJ", "ENFP"],
     characters: [
       {
-        name: "레오리오",
-        imageUrl: characterImage("leorio"),
-        ability: "오라를 멀리 투사해 떨어진 곳까지 타격을 전달한다.",
+        name: "레오리오 파라디나이트",
+        ability: "오라를 공간을 통해 전달해 원거리에서 타격을 가한다.",
+        imageUrl: "/characters/leorio.png",
       },
       {
-        name: "프랭클린",
-        imageUrl: characterImage("franklin"),
-        ability: "손가락 끝에서 다수의 오라 탄환을 난사한다.",
+        name: "레이저",
+        ability: "강력한 오라 구체를 생성해 원거리에서 발사하는 방출계 최상위 수준의 능력.",
+        imageUrl: "/characters/razor.png",
       },
     ],
-    affinity: {
-      K: 80,
-      H: 100,
-      T: 60,
-      G: 40,
-      S: 60,
-      J: 80,
-    },
   },
-  T: {
+  {
     key: "T",
     name: "변화계",
     en: "TRANSMUTATION",
-    color: "#b478dc",
-    desc: "오라의 성질을 바꾸어 예측 불가능한 전투 흐름을 만드는 트릭형 계통이다.",
-    ability: "오라 성질 변환, 속성 부여, 기습과 심리전을 섞는 변칙 전개.",
-    personality: "감각이 예민하고 발상이 유연하다. 장난기와 계산적인 면이 함께 드러난다.",
-    jobs: ["크리에이티브 디렉터", "연구원", "퍼포머"],
+    tagline: "넨의 성질을 전혀 다른 것으로 변환시키는 계통입니다.",
+    desc: "넨의 성질을 다른 걸로 바꾸는 계통이에요. 전기도 되고 껌도 되고 뭐든 됩니다. 근데 재밌는 게 같은 변화계인데 키르아랑 히소카가 완전 다른 인간이에요. 키르아는 냉정하고 이성적인데 히소카는 예측불가 그 자체죠. 변화계의 스펙트럼이 제일 넓은 이유가 여기 있습니다. 자기 경험과 이미지가 넨의 성질에 강하게 반영되는 계통이에요.",
+    ability: "넨 성질 변환 (전기/점성/탄성 등), 신체 능력과 결합한 복합 공격",
+    personality: "겉으로 보이는 것과 속이 다른 경우가 많아요. 감정을 잘 드러내지 않거나 반대로 극단적으로 드러내거나 둘 중 하나입니다. 자기만의 기준이 확실하고 그 기준 안에서 움직여요. 적이면 제일 무섭고 아군이면 제일 믿음직한 타입이죠.",
+    mbti: ["ISFP", "INFP", "ISTP", "ENTP"],
     characters: [
       {
-        name: "킬루아",
-        imageUrl: characterImage("killua"),
-        ability: "오라를 전기로 바꾸어 속도와 반응성을 극단적으로 끌어올린다.",
+        name: "키르아 조르딕",
+        ability: "칸무루 — 넨을 전기로 변화시켜 반응속도와 이동속도를 자동으로 끌어올리는 능력.",
+        imageUrl: "/characters/killua.png",
       },
       {
-        name: "히소카",
-        imageUrl: characterImage("hisoka"),
-        ability: "고무와 껌 같은 성질의 오라로 함정과 기습을 설계한다.",
+        name: "히소카 모로우",
+        ability: "번지검 — 넨을 점성과 탄성을 동시에 지닌 물질로 변화시켜 공격과 방어에 활용한다.",
+        imageUrl: "/characters/hisoka.png",
       },
     ],
-    affinity: {
-      K: 80,
-      H: 60,
-      T: 100,
-      G: 80,
-      S: 40,
-      J: 60,
-    },
   },
-  G: {
+  {
     key: "G",
     name: "구현화계",
     en: "CONJURATION",
-    color: "#3cb478",
-    desc: "명확한 규칙과 이미지로 능력을 실체화하며, 정교한 조건 설계에 강한 계통이다.",
-    ability: "도구 및 구조물 구현, 조건부 능력 설계, 준비된 판에서 강한 제어력.",
-    personality: "치밀하고 분석적이다. 기준이 분명하며 스스로 세운 룰을 중요하게 여긴다.",
-    jobs: ["기획자", "제품 디자이너", "변호사"],
+    tagline: "넨을 사용해 물체를 현실에 실체화하는 계통입니다.",
+    desc: "넨으로 물체를 실체화하는 계통이에요. 조건이 복잡하고 제약이 많을수록 강해지는 특이한 구조입니다. 6계통 중 가장 개성 강한 능력들이 여기서 나오는데 그게 우연이 아니에요. 구현화계 사용자들은 자기만의 세계관이 확실하고 그게 능력에 그대로 반영됩니다.",
+    ability: "물체 실체화, 조건/제약을 걸수록 강력해짐",
+    personality: "예민하고 까다로워 보이지만 속은 섬세합니다. 자기만의 세계관과 미학이 확실한 타입이죠.",
+    mbti: ["ISTJ", "INTJ", "INTP"],
     characters: [
       {
-        name: "쿠라피카",
-        imageUrl: characterImage("kurapika"),
-        ability: "사슬을 구현해 제압, 탐지, 회복까지 다층적으로 운용한다.",
+        name: "크라피카",
+        ability: "체인 제일 — 사슬을 이용해 상대를 구속하고 조건에 따라 다양한 효과를 발휘한다.",
+        imageUrl: "/characters/kurapika.png",
       },
       {
-        name: "코르트피",
-        imageUrl: characterImage("kortopi"),
-        ability: "대상을 복제해 정보전과 교란에 활용한다.",
+        name: "카이토",
+        ability: "크레이지 슬롯 — 랜덤 무기를 구현화하는 능력.",
+        imageUrl: "/characters/kite.png",
       },
     ],
-    affinity: {
-      K: 60,
-      H: 40,
-      T: 80,
-      G: 100,
-      S: 80,
-      J: 60,
-    },
   },
-  S: {
+  {
     key: "S",
     name: "조작계",
     en: "MANIPULATION",
-    color: "#dca028",
-    desc: "상대와 도구, 상황을 자신의 방식으로 통제하며 흐름을 설계하는 계통이다.",
-    ability: "타인 및 물체 조작, 조건부 지배, 전장을 유리한 구조로 고정하는 운영력.",
-    personality: "침착하고 계산이 빠르다. 감정보다 효율을 우선하며 판세를 읽는 데 능하다.",
-    jobs: ["프로듀서", "전략 컨설턴트", "오퍼레이터"],
+    tagline: "사람과 물체를 자유자재로 조종하는 계통입니다.",
+    desc: "사람이든 물체든 조종하는 계통이에요. 싸우기 전에 이미 판을 설계하는 스타일입니다.",
+    ability: "생물/무생물 조종, 원격 제어",
+    personality: "냉정하고 계획적이며 항상 주도권을 쥐려 합니다.",
+    mbti: ["ENTJ", "ENTP", "INTJ"],
     characters: [
       {
-        name: "일루미",
-        imageUrl: characterImage("illumi"),
-        ability: "침과 조건을 이용해 타인의 행동을 정밀하게 통제한다.",
+        name: "이르미 조르딕",
+        ability: "넨을 담은 바늘을 이용해 타인의 신체와 행동을 조작한다.",
+        imageUrl: "/characters/illumi.png",
       },
       {
-        name: "모라우",
-        imageUrl: characterImage("morel"),
-        ability: "연기 병사를 조작해 정찰, 압박, 교란을 유연하게 수행한다.",
+        name: "샤르나크 류세이",
+        ability: "안테나를 통해 대상을 원격으로 조종한다.",
+        imageUrl: "/characters/shalnark.png",
       },
     ],
-    affinity: {
-      K: 60,
-      H: 60,
-      T: 40,
-      G: 80,
-      S: 100,
-      J: 80,
-    },
   },
-  J: {
+  {
     key: "J",
     name: "특질계",
     en: "SPECIALIZATION",
-    color: "#c8c850",
-    desc: "일반 계통의 규칙으로 설명하기 어려운 고유 능력을 지닌 예외적 계통이다.",
-    ability: "희소한 고유 능력, 변수 창출, 기존 규칙을 비틀어 판을 뒤집는 특수성.",
-    personality: "독창적이고 존재감이 강하다. 기준이 남다르며 주변을 자신만의 흐름으로 끌어당긴다.",
-    jobs: ["창업가", "예술가", "전략가"],
+    tagline: "기존 계통으로 설명할 수 없는 고유 능력 계통입니다.",
+    desc: "다른 계통 규칙을 따르지 않고 개인의 조건과 서약에 의해 성능이 결정되는 특수한 계통입니다.",
+    ability: "고유 능력, 규칙 초월",
+    personality: "강한 존재감과 독자적인 성향을 지닙니다.",
+    mbti: ["INFJ", "INTJ", "ENFJ"],
     characters: [
       {
-        name: "네테로",
-        imageUrl: characterImage("netero"),
-        ability: "극한의 수련 끝에 도달한 초월적 전투 감각과 독자적 경지를 보여준다.",
+        name: "클로로 루실후르",
+        ability: "스킬 헌터 — 타인의 넨 능력을 훔쳐 사용한다.",
+        imageUrl: "/characters/chrollo.png",
       },
       {
-        name: "메르엠",
-        imageUrl: characterImage("meruem"),
-        ability: "압도적인 지배력과 진화를 통해 전장의 규칙 자체를 바꾼다.",
+        name: "크라피카",
+        ability: "엠퍼러 타임 — 모든 계통을 100% 효율로 사용할 수 있다.",
+        imageUrl: "/characters/kurapika_scarlet.png",
       },
     ],
-    affinity: {
-      K: 40,
-      H: 80,
-      T: 60,
-      G: 60,
-      S: 80,
-      J: 100,
-    },
   },
-};
-
-export const nenTypeList = NEN_TYPE_KEYS.map((key) => nenTypes[key]);
-
-export const getNenType = (key: NenTypeKey): NenType => nenTypes[key];
+];

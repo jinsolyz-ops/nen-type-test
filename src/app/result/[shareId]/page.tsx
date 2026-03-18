@@ -6,7 +6,7 @@ import { NenTypeCard } from "@/components/NenTypeCard";
 import { RadarChart } from "@/components/RadarChart";
 import { ResultBanner } from "@/components/ResultBanner";
 import { ShareButtons } from "@/components/ShareButtons";
-import { getNenType } from "@/lib/nenTypes";
+import { findNenType, nenTypeAffinities, nenTypeColors } from "@/lib/nenTypeRuntime";
 import { getResultByShareId } from "@/lib/supabase";
 import type { NenTypeKey } from "@/types";
 
@@ -29,7 +29,7 @@ async function loadResult(shareId: string) {
 export async function generateMetadata({ params }: ResultPageProps): Promise<Metadata> {
   const { shareId } = await params;
   const result = await loadResult(shareId);
-  const nenType = getNenType(result.top_type as NenTypeKey);
+  const nenType = findNenType(result.top_type as NenTypeKey);
   const title = `${nenType.name} | 念 Type Test`;
   const description = nenType.desc;
   const url = `${baseUrl}/result/${shareId}`;
@@ -56,13 +56,16 @@ export async function generateMetadata({ params }: ResultPageProps): Promise<Met
 export default async function ResultPage({ params }: ResultPageProps) {
   const { shareId } = await params;
   const result = await loadResult(shareId);
-  const nenType = getNenType(result.top_type as NenTypeKey);
+  const typeKey = result.top_type as NenTypeKey;
+  const nenType = findNenType(typeKey);
+  const color = nenTypeColors[typeKey];
+  const scores = nenTypeAffinities[typeKey];
 
   return (
     <main className="page-wrap py-8">
       <div className="flex flex-col gap-5">
-        <ResultBanner nenType={nenType} />
-        <RadarChart scores={nenType.affinity} nenType={nenType} />
+        <ResultBanner nenType={nenType} color={color} />
+        <RadarChart scores={scores} color={color} />
         <NenTypeCard nenType={nenType} />
         <ShareButtons nenType={nenType} shareId={shareId} />
         <Link

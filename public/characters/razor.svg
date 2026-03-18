@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000">
+  <rect width="800" height="1000" fill="#214d75"/>
+  <circle cx="400" cy="320" r="180" fill="#c79a73"/>
+  <rect x="180" y="545" width="440" height="280" rx="44" fill="#253747"/>
+  <text x="400" y="885" fill="#f5e7c8" font-size="68" text-anchor="middle" font-family="Georgia, serif">RAZOR</text>
+</svg>

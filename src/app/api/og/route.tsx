@@ -1,6 +1,6 @@
 import { ImageResponse } from "@vercel/og";
 
-import { nenTypes } from "@/lib/nenTypes";
+import { findNenType, nenTypeColors } from "@/lib/nenTypeRuntime";
 import { NEN_TYPE_KEYS, type NenTypeKey } from "@/types";
 
 export const runtime = "edge";
@@ -11,7 +11,8 @@ export async function GET(request: Request) {
   const typeKey = NEN_TYPE_KEYS.includes(requestedType as NenTypeKey)
     ? (requestedType as NenTypeKey)
     : "K";
-  const nenType = nenTypes[typeKey];
+  const nenType = findNenType(typeKey);
+  const color = nenTypeColors[typeKey];
 
   return new ImageResponse(
     (
@@ -70,7 +71,7 @@ export async function GET(request: Request) {
               NEN TYPE TEST
             </p>
             <div style={{ height: 28 }} />
-            <p style={{ margin: 0, color: nenType.color, fontSize: 28, fontWeight: 700 }}>
+            <p style={{ margin: 0, color, fontSize: 28, fontWeight: 700 }}>
               {nenType.en}
             </p>
             <div style={{ height: 14 }} />

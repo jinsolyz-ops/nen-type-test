@@ -17,10 +17,11 @@ export interface NenType {
   name: string;
   en: string;
   color: string;
+  tagline: string;
   desc: string;
   ability: string;
   personality: string;
-  jobs: [string, string, string];
+  mbti: [string, string] | [string, string, string] | [string, string, string, string];
   characters: [NenCharacter, NenCharacter];
   affinity: Scores;
 }

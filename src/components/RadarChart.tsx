@@ -2,14 +2,14 @@
 
 import { useEffect, useRef } from "react";
 
-import type { NenType, Scores } from "@/types";
+import type { Scores } from "@/types";
 
 interface RadarChartProps {
   scores: Scores;
-  nenType: NenType;
+  color: string;
 }
 
-const AXIS_ORDER = ["K", "H", "T", "G", "S", "J"] as const;
+const AXIS_ORDER = ["K", "T", "G", "J", "S", "H"] as const;
 const LABELS: Record<(typeof AXIS_ORDER)[number], string> = {
   K: "강화",
   H: "방출",
@@ -19,7 +19,7 @@ const LABELS: Record<(typeof AXIS_ORDER)[number], string> = {
   J: "특질",
 };
 
-export function RadarChart({ scores, nenType }: RadarChartProps) {
+export function RadarChart({ scores, color }: RadarChartProps) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   useEffect(() => {
@@ -103,6 +103,12 @@ export function RadarChart({ scores, nenType }: RadarChartProps) {
         context.fillText(LABELS[key], labelPoint.x, labelPoint.y);
       });
 
+      context.fillStyle = "#c9a84c";
+      context.font = `${Math.round(size * 0.16)}px serif`;
+      context.textAlign = "center";
+      context.textBaseline = "middle";
+      context.fillText("念", center, center);
+
       context.beginPath();
 
       AXIS_ORDER.forEach((key, index) => {
@@ -117,8 +123,8 @@ export function RadarChart({ scores, nenType }: RadarChartProps) {
       });
 
       context.closePath();
-      context.fillStyle = `${nenType.color}33`;
-      context.strokeStyle = nenType.color;
+      context.fillStyle = `${color}33`;
+      context.strokeStyle = color;
       context.lineWidth = 3;
       context.fill();
       context.stroke();
@@ -128,7 +134,7 @@ export function RadarChart({ scores, nenType }: RadarChartProps) {
 
         context.beginPath();
         context.arc(point.x, point.y, 4.5, 0, Math.PI * 2);
-        context.fillStyle = nenType.color;
+        context.fillStyle = color;
         context.fill();
       });
     };
@@ -152,7 +158,7 @@ export function RadarChart({ scores, nenType }: RadarChartProps) {
     return () => {
       window.cancelAnimationFrame(frameId);
     };
-  }, [nenType.color, scores]);
+  }, [color, scores]);
 
   return (
     <section className="surface-card rounded-[28px] p-6 sm:p-8">
