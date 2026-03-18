@@ -19,6 +19,7 @@ export default function TestPage() {
   const [selectedOptionId, setSelectedOptionId] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [isFinishing, setIsFinishing] = useState(false);
 
   const question = questions[current];
   const progressPercent = getProgressPercent(current, questions.length);
@@ -41,6 +42,7 @@ export default function TestPage() {
     setSelectedOptionId(option.id);
     setIsSubmitting(true);
     setErrorMessage(null);
+    setIsFinishing(current === questions.length - 1);
 
     await new Promise((resolve) => window.setTimeout(resolve, ANSWER_DELAY_MS));
 
@@ -61,10 +63,12 @@ export default function TestPage() {
       setScores(nextScores);
       setCurrent((prev) => prev + 1);
       setSelectedOptionId(null);
+      setIsFinishing(false);
     } catch (error) {
       console.error(error);
       setErrorMessage("결과 저장에 실패했습니다. 잠시 후 다시 시도해주세요.");
       setSelectedOptionId(null);
+      setIsFinishing(false);
     } finally {
       setIsSubmitting(false);
     }
@@ -84,6 +88,12 @@ export default function TestPage() {
           disabled={isSubmitting}
           onSelect={handleSelect}
         />
+        {isFinishing ? (
+          <div className="surface-card flex items-center justify-center gap-3 rounded-[24px] px-5 py-4 text-sm text-[var(--gold-light)]">
+            <span className="h-3 w-3 animate-spin rounded-full border-2 border-[var(--gold)] border-t-transparent" />
+            <span>결과 분석 중...</span>
+          </div>
+        ) : null}
         {errorMessage ? (
           <p className="text-center text-sm text-[#ff9b8f]">{errorMessage}</p>
         ) : null}
