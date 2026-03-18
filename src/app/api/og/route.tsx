@@ -1,9 +1,18 @@
 import { ImageResponse } from "@vercel/og";
 
-import { findNenType, nenTypeColors } from "@/lib/nenTypeRuntime";
+import { findNenType } from "@/lib/nenTypeRuntime";
 import { NEN_TYPE_KEYS, type NenTypeKey } from "@/types";
 
 export const runtime = "edge";
+
+const colorMap: Record<string, string> = {
+  K: "#dc5040",
+  H: "#50a0dc",
+  T: "#b478dc",
+  G: "#3cb478",
+  S: "#dca028",
+  J: "#c8c850",
+};
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
@@ -12,7 +21,7 @@ export async function GET(request: Request) {
     ? (requestedType as NenTypeKey)
     : "K";
   const nenType = findNenType(typeKey);
-  const color = nenTypeColors[typeKey];
+  const color = colorMap[nenType.key] ?? "#c9a84c";
 
   return new ImageResponse(
     (
