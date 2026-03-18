@@ -34,7 +34,7 @@ export function ShareButtons({ nenType, shareId }: ShareButtonsProps) {
 
   const resultUrl = `${baseUrl}/result/${shareId}`;
   const imageUrl = `${baseUrl}/api/og?type=${nenType.key}`;
-  const shareText = `나의 넨 계통은 ${nenType.name}(${nenType.en})!\n念 Type Test로 당신의 계통도 알아보세요 ↓`;
+  const shareText = `나의 넨 계통은 ${nenType.name}!\n念 Type Test로 당신의 계통도 알아보세요 ↓`;
 
   const handleTwitterShare = () => {
     const url = new URL("https://twitter.com/intent/tweet");

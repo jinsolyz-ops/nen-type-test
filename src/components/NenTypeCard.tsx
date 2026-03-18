@@ -12,9 +12,6 @@ export function NenTypeCard({ nenType }: NenTypeCardProps) {
   return (
     <section className="surface-card rounded-[28px] p-6 sm:p-8">
       <div className="mb-6">
-        <p className="gold-label mb-2 text-xs">
-          {nenType.en} / {nenType.name}
-        </p>
         <p className="text-sm leading-7 text-[var(--text)]/90 sm:text-base">{nenType.desc}</p>
       </div>
 
@@ -44,7 +41,7 @@ export function NenTypeCard({ nenType }: NenTypeCardProps) {
               key={character.name}
               className="rounded-[22px] border border-[var(--border)] bg-white/[0.03] p-3"
             >
-              <div className="relative mb-3 aspect-[4/5] overflow-hidden rounded-[18px] bg-white/[0.05]">
+              <div className="relative mb-3 aspect-square overflow-hidden rounded-[18px] bg-white/[0.05]">
                 <Image
                   src={character.imageUrl}
                   alt={character.name}

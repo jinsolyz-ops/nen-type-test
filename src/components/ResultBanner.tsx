@@ -15,7 +15,6 @@ export function ResultBanner({ nenType, color }: ResultBannerProps) {
         }}
       />
       <div className="relative flex flex-col gap-3">
-        <p className="gold-label text-xs">{nenType.en}</p>
         <h1 className="text-4xl font-black tracking-tight sm:text-5xl">{nenType.name}</h1>
         <p className="text-sm font-semibold text-[var(--gold-light)] sm:text-base">{nenType.tagline}</p>
         <p className="text-sm text-[var(--muted)] sm:text-base">
